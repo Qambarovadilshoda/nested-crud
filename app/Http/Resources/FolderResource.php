@@ -18,7 +18,7 @@ class FolderResource extends JsonResource
             'id' => $this->id,
             'parent_id' => $this->parent_id,
             'name' => $this->name,
-            'icon' => new IconResource($this->whenLoaded('icon')),
+            'icon' => new AttachmentResource($this->whenLoaded('icon')),
             'parent' => FolderResource::collection($this->whenLoaded('parent')),
             'children' => FolderResource::collection($this->whenLoaded('children')),
         ];

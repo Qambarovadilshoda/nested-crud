@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
@@ -25,7 +26,12 @@ class AuthController extends Controller
         return $this->success([], 'User registered successfully', 201);
     }
     public function login(LoginRequest $request){
-
+        $user = User::where('email', $request->email)->first();
+        if(!$user || !Hash::check($request->password, $user->password)){
+            return $this->error('User not found or password is incorrect', 404);
+        }
+        $token = $user->createToken($user->name)->plainTexToken;
+        return $this->success($token, 'User logged successfully');
     }
     public function logout(Request $request){
 

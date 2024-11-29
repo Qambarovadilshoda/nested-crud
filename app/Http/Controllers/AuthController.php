@@ -38,6 +38,10 @@ class AuthController extends Controller
         return $this->success('User logged out successfully', 204);
     }
     public function getUser(Request $request){
-
+        $user = $request->user();
+        if(!$user){
+            return $this->error('User not found', 404);
+        }
+        return $this->success(new UserResource($user));
     }
 }

@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
 {
-    public function register(){
+    public function register(RegisterRequest $request){
+        
+    }
+    public function login(LoginRequest $request){
 
     }
-    public function login(){
+    public function logout(Request $request){
 
     }
-    public function logout(){
-
-    }
-    public function getUser(){
+    public function getUser(Request $request){
 
     }
 }

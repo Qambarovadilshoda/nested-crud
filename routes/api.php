@@ -11,6 +11,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', [AuthController::class, 'getUser']);
     Route::apiResource('/folders', FolderController::class);
     Route::get('/search', [FolderController::class, 'search']);
-    Route::get('/logout', [AuthController::class, 'logout']);
+    Route::delete('/logout', [AuthController::class, 'logout']);
 });
 

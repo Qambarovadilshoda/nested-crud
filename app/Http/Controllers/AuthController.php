@@ -34,7 +34,8 @@ class AuthController extends Controller
         return $this->success($token, 'User logged successfully');
     }
     public function logout(Request $request){
-
+        $request->user()->tokens()->delete();
+        return $this->success('User logged out successfully', 204);
     }
     public function getUser(Request $request){
 

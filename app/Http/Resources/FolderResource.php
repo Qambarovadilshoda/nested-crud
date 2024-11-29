@@ -15,6 +15,7 @@ class FolderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'user' => new UserResource($this->whenLoaded('user')),
             'id' => $this->id,
             'parent_id' => $this->parent_id,
             'name' => $this->name,

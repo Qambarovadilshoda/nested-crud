@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('parent_id')->nullable()->constrained('folders')->onDelete('cascade');
             $table->string('name');
-            $table->string('icon');
             $table->timestamps();
         });
     }

@@ -30,10 +30,11 @@ class AuthController extends Controller
         if(!$user || !Hash::check($request->password, $user->password)){
             return $this->error('User not found or password is incorrect', 404);
         }
-        $token = $user->createToken($user->name)->plainTexToken;
+        $token = $user->createToken($user->name)->plainTextToken;
         return $this->success($token, 'User logged successfully');
     }
     public function logout(Request $request){
+        $this->deletePhoto($request->user()->image->path);
         $request->user()->tokens()->delete();
         return $this->success('User logged out successfully', 204);
     }

@@ -22,10 +22,10 @@ class AuthController extends Controller
         $user->image()->create([
             'path' => $uploadedImage
         ]);
-        return $this->success(new UserResource($user), 'User registered successfully', 201);
+        return $this->success([], 'User registered successfully', 201);
     }
     public function login(LoginRequest $request){
-        
+
     }
     public function logout(Request $request){
 

@@ -49,4 +49,7 @@ class User extends Authenticatable
     public function image(){
         return $this->morphOne(Attachment::class, 'attachmentable');
     }
+    public function folders(){
+        return $this->hasMany(Folder::class);
+    }
 }

@@ -24,4 +24,7 @@ class Folder extends Model
     public function icon(){
         return $this->morphOne(Attachment::class, 'attachmentable');
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

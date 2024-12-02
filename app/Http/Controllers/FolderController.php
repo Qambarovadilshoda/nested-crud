@@ -49,6 +49,9 @@ class FolderController extends Controller
         if (!$folder) {
             return $this->error('Folder not found', 404);
         }
+        if($folder->user_id !== Auth::id()){
+            return $this->error("This folder isn't your", 403);
+        }
         $folder->name = $request->name;
         $folder->parent_id = $request->parent_id;
         $folder->save();
@@ -69,6 +72,9 @@ class FolderController extends Controller
         $folder = Folder::find($id);
         if (!$folder) {
             return $this->error('Folder not found', 404);
+        }
+        if($folder->user_id !== Auth::id()){
+            return $this->error("This folder isn't your", 403);
         }
         $this->deletePhoto($folder->icon->path);
         $folder->delete();
